@@ -116,5 +116,47 @@ print(df[df['chance of admit'] > 0.7].head(10))
 That is: df[df[]] is the same as where()dropna()
 '''
 
+'''
+podemos expor uma, duas ou mais colunas de dentro de um dataframe facilmente: 
+'''
 
+print(df['gre score'].head())
+print(df[['gre score', 'toefl score']].head())
+
+'''
+that way we can print out a dataframe with all the data where gre_score > 320 for example
+'''
+
+print(df[df['gre score'] > 320].head())
+
+'''
+We can apply a lot of filters too using & 
+'''
+
+print((df['chance of admit'] > 0.7) & (df['chance of admit'] < 0.9)) #We know that will print out a boolean list
+print((df['chance of admit'].gt(0.7)) & df['chance of admit'].lt(0.9)) #Its the same thing
+print(df['chance of admit'].gt(0.7).lt(0.9)) #Its the same thing
+
+'''
+And we can apply that mask, lets try calling our df again first df again
+'''
+
+import pandas as pd
+pd.options.display.max_columns = None
+pd.options.display.max_rows = None
+
+df = pd.read_csv('admission.csv', index_col = 0)
+df.columns = [x.lower().strip() for x in df.columns]
+
+df = df[df['chance of admit'].gt(0.7)]
+print(df.head()) #That will print out just the data where ['chance of admit'] > 0.7
+df = df[df['chance of admit'].lt(0.9)]
+print(df.head())
+
+'''
+This is a good way of applying two filters in a df, but not the best way
+Other way is to do: 
+df = df[df['chance of admit'].gt(0.7).lt(0.9)]
+print(df.head())
+'''
 
