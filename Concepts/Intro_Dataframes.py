@@ -59,3 +59,62 @@ df = df.rename(columns = { 'LOR' : 'Letter of Recommendation', 'SOP' : 'Statemen
 print(df.head()) #To confirm
 print(df.columns) #To confirm
 
+'''
+What if we wanna change ALL the column names?
+First we gotta create a list with all the column names, then, apply a list comprehension: 
+'''
+
+colunas = list(df.columns) #Creating a list
+colunas = [x.lower().strip() for x in colunas] #Applying a list comprehension
+df.columns = colunas 
+print(df.columns)
+'''
+This way we are applying a function to the columns, we can to this with uppercase too
+'''
+
+# ======================================== FROM HERE YOU CAN CLEAN YOUR VARIABLES ======================================== #
+
+import pandas as pd
+pd.options.display.max_columns = None
+pd.options.display.max_rows = None
+
+df = pd.read_csv('admission.csv', index_col = 0) #To set the index to [Serial No.]
+df.columns = [x.lower().strip() for x in df.columns] #To remove the whitespaces and keep all the words in lowercase
+print(df.head()) #To confirm
+print(df.columns) #To confirm
+print(df['chance of admit']) #This way we can see ALL the data from ['chance of admit'] column 
+
+'''
+Lets do our first cleaning in data: Lets say that we want those data that ['chance of admit'] > 0.7
+
+First we gotta create another dataframe build from 'df' but filtered to ['chance of admit'] > 0.7
+'''
+
+admit_mask = df['chance of admit'] > 0.7 #That will say TRUE or FALSE for the condition
+print(admit_mask.head(10))
+
+'''
+Now we apply the Admit_Mask to our df, and it will return just the data that fulfill the condition using where()
+'''
+
+print(df.where(admit_mask).head(10)) 
+
+'''
+But notice that for those data where the condition dont apply, returns 'NaN', what if we want to exclude them?
+For that we use dropna() 
+'''
+
+print(df.where(admit_mask).dropna().head(10))
+
+'''
+where().dropna() is the same as other function: df[df]
+'''
+
+print(df[df['chance of admit'] > 0.7].head(10))
+
+'''
+That is: df[df[]] is the same as where()dropna()
+'''
+
+
+
