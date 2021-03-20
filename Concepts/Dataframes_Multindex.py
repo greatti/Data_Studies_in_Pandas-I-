@@ -39,4 +39,16 @@ df = df[keepcolumns]
 df = df.set_index(['STNAME', 'CTYNAME'])
 print(df.head())
 
+'''
+Because of that multiindex, when you print the dataframe its wasy to notice that it is grouped by
+states, and inside each state we have the citys, and for every city we have all the information
+
+See how it is easy to found a info about a city: 
+'''
+
+print(df.loc[[('Michigan', 'Washtenaw County'), 
+('Michigan', 'Wayne County')]])
+
+
+
 
