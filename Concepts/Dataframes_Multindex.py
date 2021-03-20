@@ -49,6 +49,9 @@ See how it is easy to found a info about a city:
 print(df.loc[[('Michigan', 'Washtenaw County'), 
 ('Michigan', 'Wayne County')]])
 
+# ======================================================================================================== #
 
+'''
+Lets switch the dataset to 'class_grades.csv' 
 
 
