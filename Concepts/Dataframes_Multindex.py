@@ -49,9 +49,27 @@ See how it is easy to found a info about a city:
 print(df.loc[[('Michigan', 'Washtenaw County'), 
 ('Michigan', 'Wayne County')]])
 
-# ======================================================================================================== #
+# ============================================== grades.csv ============================================== #
 
 '''
 Lets switch the dataset to 'class_grades.csv' 
+There is NaN data in this datasheet, so we can create a boolean_mask using isnull() 
+that identifies where are the NaN
+'''
+
+mask = df.isnull() #And now we have a dataframe with True and False, we can use dropna() to remove the NaN's
+print(df.dropna()) #Now if we print(df) its visible that the NaN are not in there anymore, or we can substitute NaN to -1
+df = df.fillna(-1, inplace = True) #And this way we dont have NaN but we have -1 inplace
+
+# ============================================ log.csv ============================================ #
+
+import pandas as pd
+df = pd.read_csv('log.csv')
+pd.options.display.max_columns = None
+pd.options.display.max_rows = None
+
+
+
+
 
 
