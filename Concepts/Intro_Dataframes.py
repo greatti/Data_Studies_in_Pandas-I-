@@ -154,9 +154,33 @@ df = df[df['chance of admit'].lt(0.9)]
 print(df.head())
 
 '''
-This is a good way of applying two filters in a df, but not the best way
+This is a good way of applying two filters in a df, but not the best way.
 Other way is to do: 
 df = df[df['chance of admit'].gt(0.7).lt(0.9)]
 print(df.head())
+
+but lets reset our dataframe again
 '''
 
+import pandas as pd
+pd.options.display.max_columns = None
+pd.options.display.max_rows = None
+
+df = pd.read_csv('admission.csv', index_col = 0)
+df.columns = [x.lower().strip() for x in df.columns]
+print(df.head())
+print(df.index) #That way we can see all the elements in index, just like we did to columns
+
+'''
+What if we didnt want to set Serial No. as our index? 
+Lets try to put ['chance of admit'] as our index: 
+'''
+df = df.set_index('chance of admit') #To set other column to index, but ['Serial No.'] dont come back to the columns
+print(df.head(), df.index)
+
+'''
+Just like we can set an index, we can reset the index using df.reset_index()
+'''
+
+df = df.reset_index()
+print(df.head())
