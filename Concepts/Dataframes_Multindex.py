@@ -68,6 +68,57 @@ df = pd.read_csv('log.csv')
 pd.options.display.max_columns = None
 pd.options.display.max_rows = None
 
+'''
+Lets organize this datasheet seting 'time' to index
+in crescent order
+'''
+
+df = df.set_index(['time'])
+df = df.sort_index()
+
+'''
+More than one user can use the system at the same time, so we
+need to define a multiindex with user and time and del ['index']
+'''
+
+df = df.reset_index()
+df = df.set_index(['time', 'user'])
+
+'''
+If you print this last thing we've done, its noticible that there is a lot of NaN.
+Lets fill the NaN with something using ffill()
+
+Using ffil(), all the 'paused' values will be set in False, thats because all the NaN 
+are substituted vertically by the last one. 
+
+It happens the same for 'volume' values 10.0
+'''
+
+df = df.fillna(method = 'ffill', axis = 0, inplace = False)
+#The values will not be permanently
+#The values substituted are columns
+#The method is by getting the last one vertically
+
+'''
+We can substitute some values with one choosen 
+'''
+
+df = df.replace([10,5], ['max', 'medium'])
+print(df.head(10)) #To verify
+
+'''
+This will substitute all the 10.0 with max and all the 5.0 with medium
+Lets detect in the video column all the data that ends with .html and 
+substitute for 'webpage' 
+
+That is, any number of characteres that ends with .html
+'''
+
+df = df.replace(to_replace = '.*.html$', value ='webpage', regex = True)
+
+
+
+
 
 
 
