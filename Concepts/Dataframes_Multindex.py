@@ -116,6 +116,53 @@ That is, any number of characteres that ends with .html
 
 df = df.replace(to_replace = '.*.html$', value ='webpage', regex = True)
 
+# ================================ presidents.csv ================================ #
+
+import pandas as pd
+pd.options.display.max_columns = None
+pd.options.display.max_rows = None
+
+df = pd.read_csv('presidents.csv', index_col = 0)
+
+'''
+In this csv file we have a lot of information about all the presidents of USA in crescent order
+of election
+
+Lets clean the column names
+'''
+df = df.rename(mapper = str.strip, axis = 'columns') #Remember that this will remove the whitespaces from the columns
+
+colunas = list(df.columns) #To create a list with the columns
+print(colunas) 
+
+colunas = [x.lower().strip() for x in colunas] #To remove all the whitespaces and become lowercase
+df.columns = colunas #to transform the list 'colunas' to columns in dataframes
+
+'''
+Lets say we now want to cut the president names and split into first and last names. 
+We gotta create a function that recognizes the first and last names
+'''
+
+def splitname(row):
+    row['first'] = row['president'].split(' ')[0]
+    row['last'] = row['president'].split(' ')[-1]
+    return row
+
+'''
+And now we apply this function to df and del the ['president'] column
+Then we set index to ['first'] and ['last']
+'''
+
+df = df.apply(splitname, axis = 'columns')
+del df['president']
+df = df.set_index(['first', 'last'])
+
+
+
+
+
+
+
 
 
 
