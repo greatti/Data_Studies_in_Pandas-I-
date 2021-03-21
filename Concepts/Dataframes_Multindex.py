@@ -157,6 +157,71 @@ df = df.apply(splitname, axis = 'columns')
 del df['president']
 df = df.set_index(['first', 'last'])
 
+'''
+We can do the same thing with REGEXES
+'''
+
+pd.options.display.max_columns = None
+pd.options.display.max_rows = None
+
+df = pd.read_csv('presidents.csv', index_col = 0)
+df = df.rename(mapper = str.strip, axis = 'columns')
+colunas = list(df.columns) #para criar uma lista com os nomes das colunas do dataframe
+colunas = [x.lower().strip() for x in colunas] #isso vai deixar tudo minusculo E retirar whitespaces
+df.columns = colunas
+
+'''
+First we define a pattern to follow in regex: 
+In this case, we wanna get the first and last word of 'presidents'
+'''
+pattern = '(^[\w]*)(?:.* )([\w]*$)'
+
+'''
+first : the start of the string, any chacactere, in any quantity followed by a whitespace
+second: we dont want it to return, any number of charactere followed by a whitespace
+last: any number of charactere at the end of the string 
+'''
+
+pattern = '(?P<First>^[\w]*)(?:.* )(?P<Last>[\w]*$)' #This is to name the groups
+names = df['president'].str.extract(pattern).head() #To create two columns based on df['president']
+
+''' If we print this out, we'll only get the two columns, so we gotta add this to our df '''
+
+df['First'] = names['First']
+df['Last'] = names['Last']
+
+''' and then set this to multiindex '''
+
+df = df.set_index(['First', 'Last'])
+
+'''
+If we analayze the dataframe we see that the column ['born'] is a very 
+messy column, lets clean it: 
+
+we will start with excluding all that dont follow the pattern month/day/year 
+'''
+
+df['born'] = df['born'].str.extract('([\w]{3} [\w]{1,2}, [\w]{4})')
+
+'''
+That is saying : any characteres of 3 in length, followed by a whitespace, followed by 
+any characteres of 1 or 2 in length, followed by a comma, followed by a whitespace, followed
+by any characteres of 4 in length
+
+If we want to organize more, we can use .to_datetime()
+'''
+
+df['born'] = pd.to_datetime(df['born'])
+
+'''
+To end this, lets say we want to organize this by the crescent age 
+'''
+
+df = df.reset_index()
+df = df.set_index(['age atstart of presidency'])
+df = df.sort_index()
+
+print(df.head(10)) # to confirm
 
 
 
