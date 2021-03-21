@@ -1,9 +1,6 @@
-<p align="center">
-  
 # An introduction to Pandas library (Python) -- with projects!! 
 
-
-</p>
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 <details><summary>VERSIONS</summary>
 <p>
