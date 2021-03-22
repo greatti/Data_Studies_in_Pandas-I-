@@ -16,7 +16,7 @@ print(pd.__version__) #To see what is your version in Python
 
 <hr>
 
-This is the first project of a study in Pandas librarie, to one day we reach a professional data analysis level. Today, when im writing this (03/21/21), i finished the first part of the concepts, and you can find this in [Concepts](https://github.com/greatti/Imunization/tree/main/Concepts), you can follow this explanations: 
+This is the first project of a study in Pandas librarie, to one day we reach a professional data analysis level. Today, when im writing this (03/21/21), i finished the first part of the concepts, and you can find this in [Intro_to_pandas](https://github.com/greatti/Imunization/tree/main/Concepts), you can follow this explanations: 
 
 
 + Concepts
