@@ -16,7 +16,7 @@ print(pd.__version__) #To see what is your version in Python
 
 <hr>
 
-This is the first project of a study in Pandas library, the objective is one day we reach a professional data analysis level. Today, when im writing this (03/21/21), i finished the first part of the concepts, and you can find this in [Intro_to_pandas](https://github.com/greatti/Imunization/tree/main/Concepts), you can follow this explanations: 
+This is the first project of a study in Pandas library, the objective is one day we reach a professional data analysis level. Today, when im writing this (03/21/21), i finished the first part of the concepts, and you can find this in [Intro_to_pandas](https://github.com/greatti/Imunization/tree/main/Concepts), then follow this explanations: 
 
 
 + Intro_to_pandas
@@ -30,4 +30,7 @@ This is the first project of a study in Pandas library, the objective is one day
 + NIS-PUF17-DUG.pdf **PDF explaining all the variables in the project**
 + NISPUF17.csv **database of the project**
 
+<hr>
+
+The project will be posted soon, and with all of that material you will be capable of doing this project in your own way, and feel free to send me and and we can talk about it.
 
