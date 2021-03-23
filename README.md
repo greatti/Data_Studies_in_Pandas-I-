@@ -50,11 +50,12 @@ values imputed."
 
 That means that our mother education level is stored in EDUC1 variable, and that is confirmed in page 51:
 
-EDUC1 – education of the mother : 
-                                - <12 years
-                                - 12 years
-                                - >12 years, not a college graduate
-                                - College graduate
++ EDUC1 – education of the mother
+  - Less than 12 years
+  - 12 years
+  - More than 12 years, not a college graduate
+  - College graduate
+
 Now we know what to do, we just need to use 'EDUC1' column, separate the education level in order, count how many there is of each type, count the total and divide each type for the total
 
 In project_01 i did all of that explaining all of the process, but if you want a more concise code, see the follow code where i define a function, but i only recommend reading this when you have already read the original project_01.
