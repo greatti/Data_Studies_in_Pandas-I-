@@ -66,3 +66,10 @@ and not one, so is like we are "excluding" the first row but adding it to the in
 
 now we gonna do some operations related to proportion
 '''
+
+prop['less than high'] = np.sum(mom==1)/n #Because LESS THAN HIGHSCHOOL is represented by 1
+prop['equal to high'] = np.sum(mom==2)/n #Because EQUAL TO HIGHSCHOOL is represented by 2
+prop['more than high not college'] = np.sum(mom==3)/n #Because MORE THAN HIGHSCHOOL BUT LESS THAN COLLEGE is represented by 3
+prop['equal to college'] = np.sum(mom==4)/n #Because EQUAL TO COLLEGE is represented by 4
+
+print(prop)
