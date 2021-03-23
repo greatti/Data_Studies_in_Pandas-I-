@@ -52,3 +52,17 @@ print(mom)
 
 n = len(mom) #Its the number of elements, that is, the total number of mothers
 print(n)
+
+#Initially, we have: 
+
+prop = { 'less than high' : 0, 
+        'equal to high' : 1, 
+        'more than high not college': 0, 
+        'equal to college' : 0}
+
+'''
+You may ask why initially we dont have all null in the beginning, and thats because the index starts at 0
+and not one, so is like we are "excluding" the first row but adding it to the initial considerations
+
+now we gonna do some operations related to proportion
+'''
