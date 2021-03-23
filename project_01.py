@@ -43,3 +43,12 @@ EDUC1 – education of the mother :
 
 So the thing is: we need to get each one of this data and divide for the total of mothers
 '''
+
+#We will work with only one column, so we dont need to focus in dataframe, we can use only Series, that is a part of a df
+
+MOM = df['EDUC1']
+mom = np.sort(MOM.values) #And this way we create a series called 'mom' that is just a copy of MUM but SORTED
+print(mom)
+
+n = len(mom) #Its the number of elements, that is, the total number of mothers
+print(n)
