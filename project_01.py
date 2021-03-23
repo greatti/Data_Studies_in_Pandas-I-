@@ -73,3 +73,4 @@ prop['more than high not college'] = np.sum(mom==3)/n #Because MORE THAN HIGHSCH
 prop['equal to college'] = np.sum(mom==4)/n #Because EQUAL TO COLLEGE is represented by 4
 
 print(prop)
+
