@@ -65,3 +65,12 @@ Lets calculate two more things:
                                 y : number of children that were fed
                                 n : number of children that were not fed
 '''
+
+y = len(dfflu_yes) # y = 13291
+n = len(dfflu_no) # n = 1997
+print(y, n)
+
+y_av = np.sum(dfflu_yes['P_NUMFLU'])/y #To sum all the values from the P_NUMFLU column of dfflu_yes dataframe and divide by the number of children that were fed
+n_av = np.sum(dfflu_no['P_NUMFLU'])/n #To sum all the values from the P_NUMFLU column of dfflu_no dataframe and divide by the number of children that were not fed
+
+print(y_av, n_av) #To return a tuple of the result
