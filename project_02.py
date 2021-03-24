@@ -128,3 +128,17 @@ dontknow = (dn / t)*100
 refused = (r / t)*100
 
 print(yes, no, dontknow, refused)
+
+'''
+For the second question we need to get the our first dataframe called dfflu and filter it to the
+maximum number of doses we have, which we need to see too
+'''
+
+dmax = max(dfflu['P_NUMFLU'].dropna().unique())
+#### print(dmax) # dmax = 6.0
+
+dfflu_doses_max = dfflu[dfflu['P_NUMFLU'] == dmax].dropna()
+#### print(dfflu_doses_max) #Only 3 children took 6 doses and this 3 children were fed with breastmilk
+
+dfflu_doses_5 = dfflu[dfflu['P_NUMFLU'] == 5.0].dropna()
+#### print(dfflu_doses_5)
