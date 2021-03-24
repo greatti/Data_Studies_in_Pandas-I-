@@ -35,3 +35,14 @@ So we got it!
 keepcolumns = ['CBF_01', 'P_NUMFLU'] #To create a list with only this column
 dfflu = df[keepcolumns]  #And pass this two columns to a new dataframe called dfflu
 print(dfflu.head(100))
+
+n = len(dfflu) #To see the number of elements in the study 
+print(n) # n = 28465 is the total
+
+'''
+But let filter this dataframe for children that were fed with breastmilk, that is, ['CBF_01'] == 1
+and for children that were not fed with breastmilk, that is,['CBF_01'] == 2
+'''
+
+dfflu_yes = dfflu[dfflu['CBF_01'] == 1].dropna() #This means : Filter just for [CBF_01] == 1 and drop NaN from all the columns
+dfflu_no = dfflu[dfflu['CBF_01'] == 2].dropna() #This means : Filter just for ['CBF_01'] == 2 and drop NaN from all the columns
