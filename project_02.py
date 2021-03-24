@@ -51,8 +51,8 @@ keepcolumns = ['CBF_01', 'P_NUMFLU'] #To create a list with only this column
 dfflu = df[keepcolumns]  #And pass this two columns to a new dataframe called dfflu
 #### print(dfflu.head(100))
 
-n = len(dfflu) #To see the number of elements in the study 
-#### print(n) # n = 28465 is the total
+tnan = len(dfflu) #To see the number of elements in the study 
+#### print(tnan) # tnan = 28465 is the total without disregarding the NaN in P_NUMFLU
 
 '''
 But let filter this dataframe for children that were fed with breastmilk, that is, ['CBF_01'] == 1
@@ -61,6 +61,8 @@ and for children that were not fed with breastmilk, that is,['CBF_01'] == 2
 
 dfflu_yes = dfflu[dfflu['CBF_01'] == 1].dropna() #This means : Filter just for [CBF_01] == 1 and drop NaN from all the columns
 dfflu_no = dfflu[dfflu['CBF_01'] == 2].dropna() #This means : Filter just for ['CBF_01'] == 2 and drop NaN from all the columns
+dfflu_dontknow = dfflu[dfflu['CBF_01'] == 77].dropna() #Same to dont know answers
+dfflu_refuse = dfflu[dfflu['CBF_01'] == 99].dropna() #Same to refused answers
 
 '''
 A question to you think about: In this case, the NaN in ['P_NUMFLU'] are useless or they say something?
@@ -83,7 +85,10 @@ Lets calculate two more things:
 
 y = len(dfflu_yes) # y = 13291
 n = len(dfflu_no) # n = 1997
-#### print(y, n)
+dn = len(dfflu_dontknow) # dn = 42
+r = len(dfflu_refuse) # r = 3
+t = (y + n + dn + r) # t = 15333 (This disregard all the NaN)
+#### print(y, n, dn, r, t)
 
 y_av = np.sum(dfflu_yes['P_NUMFLU'])/y #To sum all the values from the P_NUMFLU column of dfflu_yes dataframe and divide by the number of children that were fed
 n_av = np.sum(dfflu_no['P_NUMFLU'])/n #To sum all the values from the P_NUMFLU column of dfflu_no dataframe and divide by the number of children that were not fed
@@ -116,3 +121,10 @@ pd.options.display.max_rows = None
 df = pd.read_csv('NISPUF17.csv')
 keepcolumns = ['CBF_01', 'P_NUMFLU'] #To create a list with only this column
 dfflu = df[keepcolumns]
+
+yes = (y / t)*100
+no = (n / t)*100
+dontknow = (dn / t)*100
+refused = (r / t)*100
+
+print(yes, no, dontknow, refused)
