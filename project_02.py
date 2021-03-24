@@ -5,6 +5,21 @@ Created on Wed Mar 24 18:22:22 2021
 @author: great
 """
 
+
+
+
+
+''' 
+                 OBSERVATION:
+THE PRINTS MARKED WIT #### ARE JUST FOR OBSERVATION
+YOU CAN UNMARK TO SEE THE RESULTS STEP BY STEP
+
+'''
+
+
+
+
+
 import pandas as pd
 import numpy as np 
 
@@ -23,7 +38,7 @@ CBF_01 could be 'Yes' 'No' 'Dont know' and 'Missing'
 P_NUMFLU is the number of doses for each childern
 '''
 
-print(df['CBF_01'].unique()) #To see that the 4 possible variables are [ 1 2 99 77] 
+#### print(df['CBF_01'].unique()) #To see that the 4 possible variables are [ 1 2 99 77] 
 
 '''
 Page 177 says: a code of 77 is used for "Don't Know" responses and a code of 99 is used for "Refused" responses
@@ -34,10 +49,10 @@ So we got it!
 
 keepcolumns = ['CBF_01', 'P_NUMFLU'] #To create a list with only this column
 dfflu = df[keepcolumns]  #And pass this two columns to a new dataframe called dfflu
-print(dfflu.head(100))
+#### print(dfflu.head(100))
 
 n = len(dfflu) #To see the number of elements in the study 
-print(n) # n = 28465 is the total
+#### print(n) # n = 28465 is the total
 
 '''
 But let filter this dataframe for children that were fed with breastmilk, that is, ['CBF_01'] == 1
@@ -52,8 +67,8 @@ A question to you think about: In this case, the NaN in ['P_NUMFLU'] are useless
 We should drop it? I will because it says nothing to our relation between variables
 '''
 
-print(dfflu_yes.head(10))
-print(dfflu_no.head(10))
+#### print(dfflu_yes.head(10))
+#### print(dfflu_no.head(10))
 
 '''
 Now what we want to discover is pretty simple: what is the medium number of doses that children that were
@@ -68,7 +83,7 @@ Lets calculate two more things:
 
 y = len(dfflu_yes) # y = 13291
 n = len(dfflu_no) # n = 1997
-print(y, n)
+#### print(y, n)
 
 y_av = np.sum(dfflu_yes['P_NUMFLU'])/y #To sum all the values from the P_NUMFLU column of dfflu_yes dataframe and divide by the number of children that were fed
 n_av = np.sum(dfflu_no['P_NUMFLU'])/n #To sum all the values from the P_NUMFLU column of dfflu_no dataframe and divide by the number of children that were not fed
