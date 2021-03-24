@@ -147,3 +147,51 @@ dfflu_doses_5 = dfflu[dfflu['P_NUMFLU'] == 5.0].dropna()
 
 dfflu_doses_min = dfflu[dfflu['P_NUMFLU'] == dmin].dropna()
 #### print(dfflu_doses_min)
+
+'''
+Now we'll get dfflu_doses_5 and dfflu_doses_min and see how many children fed
+with breast milk there is, in percentage
+
+But first we need to see how many children there is in total
+'''
+
+t5 = len(dfflu_doses_5) # t5 = 35
+tmin = len(dfflu_doses_min) # tmin = 4139
+tmax = len(dfflu_doses_max) # tmax = 3
+
+#### print(t5, tmin, tmax)
+
+''' And now we can filter one more time '''
+
+dfflu_doses_5_1 = dfflu_doses_5[dfflu_doses_5['CBF_01'] == 1] #And no need to dropna() because there is no nan
+dfflu_doses_min_1 = dfflu_doses_min[dfflu_doses_min['CBF_01'] == 1] #Same 
+
+t51 = len(dfflu_doses_5_1)
+tmin1 = len(dfflu_doses_min_1)
+
+yes_5 = (t51 / t5)*100
+yes_min = (tmin1 / tmin)*100
+
+print(yes_5, yes_min)
+
+'''
+                   CONCLUSION: 
+    All we can conclude by all of that is: 
+        - Children that have been fed with breastmilk take more doses of flu, in average, when compared to 
+        those that have not been fed with breastmilk, but it is kinda similar
+        
+        - In all of the study, 86.68% of the children were fed with breastmilk, so maybe the study is not 
+        equal in terms of elements in all the classes
+        
+        - 100% of the children that took 6.0 doses of flu, have been fed with breastmilk
+          94.28% of the children that took 5.0 doses of flu, have been fed with breastmilk
+          83.74% of the children that took 0.0 doses of flu, have been fed with breastmilk
+    
+    It is espected that for all doses of flu, the big majority are children that have been fed with breastmilk
+    so all i can think about to explain this is: 
+        
+        Its probably fault of the differences of elements in all the classes, and not even close, so the
+        differences becomes a lot bigger, a prove of that is that the average of this two classes are 
+        very similar
+        
+'''
