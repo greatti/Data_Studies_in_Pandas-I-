@@ -46,3 +46,22 @@ and for children that were not fed with breastmilk, that is,['CBF_01'] == 2
 
 dfflu_yes = dfflu[dfflu['CBF_01'] == 1].dropna() #This means : Filter just for [CBF_01] == 1 and drop NaN from all the columns
 dfflu_no = dfflu[dfflu['CBF_01'] == 2].dropna() #This means : Filter just for ['CBF_01'] == 2 and drop NaN from all the columns
+
+'''
+A question to you think about: In this case, the NaN in ['P_NUMFLU'] are useless or they say something?
+We should drop it? I will because it says nothing to our relation between variables
+'''
+
+print(dfflu_yes.head(10))
+print(dfflu_no.head(10))
+
+'''
+Now what we want to discover is pretty simple: what is the medium number of doses that children that were
+fed with breastmilk took, and what is the medium number of doses of those who were not fed with breastmilk?
+
+This way we can say "oh, those who were fed needed less doses" and explore the reason of this
+
+Lets calculate two more things: 
+                                y : number of children that were fed
+                                n : number of children that were not fed
+'''
