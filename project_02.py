@@ -89,3 +89,30 @@ y_av = np.sum(dfflu_yes['P_NUMFLU'])/y #To sum all the values from the P_NUMFLU 
 n_av = np.sum(dfflu_no['P_NUMFLU'])/n #To sum all the values from the P_NUMFLU column of dfflu_no dataframe and divide by the number of children that were not fed
 
 print(y_av, n_av) #To return a tuple of the result
+
+
+'''
+So all we can conclude is, children fed with breastmilk take, in average, more doses than those who arent fed.
+
+The next part of the study is much much simpler, because it is just a complement, we will see two things: 
+    
+    - What is the proportion of children of each class of CBF_01? I mean, we have more children in the study 
+    that were fed, that were not, that dont know....? Because the number of children in each class could
+    affect the results
+    
+    - Of those that took the maximum number of doses, how many of them were fed with breastmilk? and of those
+    that took the minimum number of doses?
+
+
+We are going to quickly repeat some processes
+'''
+
+import pandas as pd
+import numpy as np 
+
+pd.options.display.max_columns = None
+pd.options.display.max_rows = None
+
+df = pd.read_csv('NISPUF17.csv')
+keepcolumns = ['CBF_01', 'P_NUMFLU'] #To create a list with only this column
+dfflu = df[keepcolumns]
