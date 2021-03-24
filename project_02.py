@@ -22,3 +22,16 @@ For this we will use CBF_01 and P_NUMFLU
 CBF_01 could be 'Yes' 'No' 'Dont know' and 'Missing'
 P_NUMFLU is the number of doses for each childern
 '''
+
+print(df['CBF_01'].unique()) #To see that the 4 possible variables are [ 1 2 99 77] 
+
+'''
+Page 177 says: a code of 77 is used for "Don't Know" responses and a code of 99 is used for "Refused" responses
+Page 110 says : 1='Yes' 2='No'
+
+So we got it!
+'''
+
+keepcolumns = ['CBF_01', 'P_NUMFLU'] #To create a list with only this column
+dfflu = df[keepcolumns]  #And pass this two columns to a new dataframe called dfflu
+print(dfflu.head(100))
