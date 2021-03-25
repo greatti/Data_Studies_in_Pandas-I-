@@ -33,6 +33,7 @@ This is the first project of a study in Pandas library, the objective is one day
 + NIS-PUF17-DUG.pdf **PDF explaining all the variables in the project**
 + NISPUF17.csv **database of the project**
 + project_01.py **the first project 
++ project_02.py
 
 <hr>
 
@@ -82,6 +83,65 @@ def proportion_of_education():
     prop["equals to college"]=np.sum(mom==4)/n
     return prop
 ```
+
+</p>
+</details>
+
+<hr>
+
+### SECOND PROJECT ( [project_02](https://github.com/greatti/Data_studies/blob/main/project_02.py) )
+
+<details><summary>DESCRIPTION</summary>
+<p>
+  
+this second project is separated into three parts, but we will work with only two variables: CBF_01 and P_NUMFLU
+CBF_01 is a variable that define if the children were or not fed with breastmilk, and it assumes 4 values : [1, 2, 77, 99]. (We find this information at page 177 and 110)
+      - 1 It is synonymous for answer "yes"
+      - 2 It is synonymous for answer "no"
+      - 77 It is synonymous for answer "dont know"
+      - 99 It is synonymous for answer "refused"
+      
+P_NUMFLU is a variable that define the number of doses the children took, it goes from 0.0 to 6.0 including NaN
+
+We basically want to do here 3 studies: 
+
++ First we will see the average of doses taken by the children of ['CBF_01'] == 1 and ['CBF_01'] == 2 groups, to see if there is a lot of discrepancy in doses taken by these two classes;
++ Secondly, we will see the percentage of elements in each ['CBF_01'] group, to see if the number of elements are similar, because sometimes the study can be impaired by having much more elements in one group than the other; 
++ Lastly, we will see the percentage of children fed on breast milk in each classes in ['P_NUMFLU'], that is, for 6.0, 5.0, 0.0 doses. 
+
+#### Conclusions: 
+
+<table>
+<tr><th>First study</th><th>Second study</th><th>Third study</th></tr>
+<tr><td>
+
+| CBF_01 | average of doses |
+| :---: | :---: |
+| 1 | 1.8799187420058687 | 
+| 2 | 1.5963945918878317 |
+
+</td><td>
+
+| CBF_01 | Percentage |               
+| :---: | :---: |
+| 1 | 86.68% |
+| 2 | 13.02% |
+| 77 | 0.27% |
+| 99 | 0.019% |
+
+</td><td>
+  
+| P_NUMFLU| ['CBF_01']==1 |               
+| :---: | :---: |
+| 6.0 | 100% |
+| 5.0 | 94.28% |
+| 0.0 | 83.74% |
+
+</td></tr> </table>
+
+So what can we conclude? Children that have been fed with breastmilk take more doses of flu, in average, when compared to those that have not been fed with breastmilk, but it is kinda similar, that indicates that maybe the number of elements in ['CBF_01'] could be similar too? So we will confirm this by the second study.
+The second study proves the opposite, we have MUCH more children fed with breastmilk than all the other options, so that make me think, maybe if we had 25% of children for each class, the average could be different? I think so. 
+To confirm that the number of elements influences in average, we do the third study and see that we really have much more children fed with breastmilk in all classes, for both 5 doses and 0 doses
 
 </p>
 </details>
