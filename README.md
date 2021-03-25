@@ -1,6 +1,6 @@
 # An introduction to Pandas library (Python) -- with projects!! 
 
-[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+<img alt="Python" src="https://img.shields.io/badge/python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white"/>
 
 <details><summary>VERSIONS</summary>
 <p>
