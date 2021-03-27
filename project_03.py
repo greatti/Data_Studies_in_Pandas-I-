@@ -48,7 +48,20 @@ df = df[keepcolumns]  #And pass this two columns to a new dataframe called dfflu
 df_yes = df[df['HAD_CPOX'] == 1].dropna()
 df_no = df[df['HAD_CPOX'] == 2].dropna()
 
+''' And now we filter to who took at least one dose and none dose and had cpox
+Then, we do the same thing to who had not cpox
+'''
 
+df_yes_one = df_yes[df_yes['P_NUMVRC'] > 0.0].dropna()
+df_yes_none = df_yes[df_yes['P_NUMVRC'] == 0.0].dropna()
+
+df_no_one = df_no[df_no['P_NUMVRC'] > 0.0].dropna()
+df_no_none = df_no[df_no['P_NUMVRC'] == 0.0].dropna()
+
+#### (df_yes_one.head())
+#### print(df_yes_none.head())
+#### print(df_no_one.head())
+#### print(df_no_none.head())
 
 
 
