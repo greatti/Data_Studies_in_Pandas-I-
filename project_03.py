@@ -171,6 +171,17 @@ dfpie = pd.DataFrame({'elements': [t1, t2, t3, t4, t5, t6, t7, t8]},
 
 plot = dfpie.plot.pie(y='elements', figsize = (8,8)) 
 
+'''
+Now it is conclusive, we see that even that the percentages were big, the number of elements were not, 
+so the number of people ho hadnt cpox but took the vaccine is WAY too big than of those who had cpox
+and took the vaccine, but the percentages are equal
+Dont confuse yourself with percentages, if you think that there is something weird going on, go deeper
+in the problem
+
+The conclusio is: the vaccine is effective both in man and women, because 91% of people that took the vaccine
+didnt get cpox
+'''
+
 
 
 
