@@ -5,6 +5,13 @@ Created on Sat Mar 27 15:33:17 2021
 @author: great
 """
 
+''' 
+                 OBSERVATION:
+THE PRINTS MARKED WIT #### ARE JUST FOR OBSERVATION
+YOU CAN UNMARK TO SEE THE RESULTS STEP BY STEP
+
+'''
+
 '''
 For this third project we will see the relation between other three variables: 
     
