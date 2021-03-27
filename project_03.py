@@ -180,7 +180,7 @@ plot = dfpie.plot.pie(y='elements', figsize = (8,8))
 
 '''
 Now it is conclusive, we see that even that the percentages were big, the number of elements were not, 
-so the number of people ho hadnt cpox but took the vaccine is WAY too big than of those who had cpox
+so the number of people who hadnt cpox but took the vaccine is WAY too big than of those who had cpox
 and took the vaccine, but the percentages are equal
 Dont confuse yourself with percentages, if you think that there is something weird going on, go deeper
 in the problem
