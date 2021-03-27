@@ -36,3 +36,9 @@ df = pd.read_csv('NISPUF17.csv')
 #### print(df['SEX'].unique()) #To see all the values, 1 for male 2 for female
 #### print(df['HAD_CPOX'].unique()) #2 for No, 1 for yes, 77 for dontknow and 99 for refused
 #### print(df['P_NUMVRC'].unique()) 
+
+''' Lets get just the three columns that matters '''
+
+keepcolumns = ['SEX', 'P_NUMVRC', 'HAD_CPOX'] #To create a list with only this column
+df = df[keepcolumns]  #And pass this two columns to a new dataframe called dfflu
+#### print(df.head(100))
