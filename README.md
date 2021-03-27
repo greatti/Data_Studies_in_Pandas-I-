@@ -32,8 +32,10 @@ This is the first project of a study in Pandas library, the objective is one day
   - presidents.csv **One of the csv's used in python files**
 + NIS-PUF17-DUG.pdf **PDF explaining all the variables in the project**
 + NISPUF17.csv **database of the project**
++ PieChart(p3).png **piechart of project_03**
 + project_01.py **the first project**
 + project_02.py **the second project**
++ project_03.py **the third project**
 
 <hr>
 
