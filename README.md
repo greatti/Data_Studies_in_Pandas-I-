@@ -253,6 +253,11 @@ After all that we have this groups:
         - hadnt cpox, no doses, female
        
 And now we count the number of elements of each group to calculate the percentages, we stay with: 
+>OBSERVATIONS: 
+>> Had_Took: Had cpox and took at least one dose
+>> Had_Didnttook: Had cpox and hasnt took any dose
+>> Hadnt_Took: Did not contract cpox but took at least one dose
+>> Hadnt_Didnttook: Did not contract cpox and hasnt took any dose
 
 <table>
   <tr><th>Had_Took</th><th>Had_Didnttook</th><th>Hadnt_Took</th><th>Hadnt_Didnttook</th></tr>
@@ -373,6 +378,9 @@ def cpox_project():
                          'no_none_m', 'no_none_f' ])
 
     plot = dfpie.plot.pie(y='elements', figsize = (8,8))
+    
+    return(had_took, had_didnttook, hadnt_took, hadnt_didnttook)
+    return(plot)
 ```
 
 </p>
