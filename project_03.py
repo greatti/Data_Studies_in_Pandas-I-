@@ -87,6 +87,34 @@ df_no_none_f = df_no_none[df_no_none['SEX'] == 2].dropna() #hadnt cpox, no doses
 #### print(df_no_none_m.head())
 #### print(df_no_none_f.head())
 
+''' And now we have to count the number of elements '''
+
+t1 = len(df_yes_one_m)
+t2 = len(df_yes_one_f)
+t3 = len(df_yes_none_m)
+t4 = len(df_yes_none_f)
+t5 = len(df_no_one_m)
+t6 = len(df_no_one_f)
+t7 = len(df_no_none_m)
+t8 = len(df_no_none_f)
+t = (t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8)
+
+print(t1, t2, t3, t4, t5, t6, t7, t8)
+
+'''
+OK now we have all we need, so we can create a dictionary to calculate:
+    
+    The percentage of man that had cpox but took at least one dose
+    The percentage of man that had cpox but did not took at least one dose
+    The percentage of man that hadnt cpox and took at least one dose
+    The percentage of man that hadnt cpox and did not took at least one dose
+
+    The percentage of woman that had cpox but took at least one dose
+    The percentage of woman that had cpox but did not took at least one dose
+    The percentage of woman that hadnt cpox and took at least one dose
+    The percentage of woman that hadnt cpox and did not took at least one dose
+'''
+
 
 
 
