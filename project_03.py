@@ -145,6 +145,25 @@ hadnt_didnttook['female'] = t8/(t6 + t8)
 print(hadnt_took)
 print(hadnt_didnttook)
 
+'''
+For me that is a little bit confusing, because: 
+    
+            - 70% of people who got cpox, had taken the vaccine
+            - 30% of people who got cpox, had not had the vaccine
+            
+        What that means? The vaccine is not effective? Because we have more people here who had cpx after having
+        the vaccine, that is not the expected.
+        At the same time: 
+        
+            - 91% of people who did not get cpox, had taken the vaccine
+            - 8% of people who did not get cpox, had not had taken the vaccine
+            
+        So it is effective? Because this results are contradictory. I think that in order to conclude something, we
+        will need to evaluate this comparing to the total number of elements, using our "t" variable. 
+        Maybe we can, just to visualize it, use a pizza graph in pandas
+
+'''
+
 
 
 
