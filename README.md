@@ -221,3 +221,161 @@ def Third_project():
 </details>
 
 <hr>
+
+### THIRD PROJECT ( [project_03](https://github.com/greatti/Data_studies/blob/main/project_03.py) )
+
+<details><summary>DESCRIPTION</summary>
+<p>
+
+This third project is something big, we will have to filter NISPUF17.csv a lot of times, we want to study basically 3 variables: 
+
+['SEX'] that indicates the sex of the child: Male or Female (1 and 2)
+['HAD_CPOX'] that indicates if the child had cpox : Yes, No, Dont know, refused or missing (1, 2, 77, 99 and NaN)
+['P_NUMVRC'] that indicates the number of varicella doses 
+
+Buy why? We want to see if the the vaccine is effective in male and female children
+But how? 
+
+        - First, we get NISPUF17 and filter it to just this three variables;
+        - Then, we filter the resulting dataframe to ['HAD_CPOX'] == 1 , that is, only to who had cpox;
+        - Then, we filter this resulting dataframe to ['P_NUMVRC'] greater than 1;
+        - Last, we filter again separating by sex.
+
+After all that we have this groups: 
+
+        - had cpox, at least one dose, male
+        - had cpox, at least one dose, female
+        - had cpox, no doses, male
+        - had cpox, no doses, female
+        - hadnt cpox, at least one dose, male
+        - hadnt cpox, at least one dose, female
+        - hadnt cpox, no doses, male
+        - hadnt cpox, no doses, female
+       
+And now we count the number of elements of each group to calculate the percentages, we stay with: 
+
+<table>
+  <tr><th>Had_Took</th><th>Had_Didnttook</th><th>Hadnt_Took</th><th>Hadnt_Didnttook</th></tr>
+<tr><td>
+
+| Sex | Percentage |
+| :---: | :---: |
+| 1 | 70.1% | 
+| 2 | 69.7% |
+
+</td><td>
+
+| Sex | Percentage |               
+| :---: | :---: |
+| 1 | 29.8% |
+| 2 | 30.2% |
+
+</td><td>
+  
+| Sex | Percentage |              
+| :---: | :---: |
+| 1 | 91.2% |
+| 2 | 91.7% |
+
+</td><td>
+  
+| Sex | Percentage |              
+| :---: | :---: |
+| 1 | 8.71% |
+| 2 | 8.25% |
+
+</td></tr> </table>
+
+That all means: 
+
+              - 70% of mans that had cpox were vaccinated, and 69% of woman that had cpox were vaccinated
+              - 29% of mans that had cpox werent vaccinated , and 30% of womand that had cpox werent vaccinated
+What all of that means? The vaccine isnt effective? Not necessarily, the percentages are confusing and contradictory 
+because we are not seeing all the elements together, so lets put all the percentages with all the elements in a pie
+chart
+
+![PieChart](https://github.com/greatti/Data_studies/blob/main/PieChart(p3).png)
+
+And this is what we get, so now we can conclude that the vaccine is really effective both in male and female
+We see that even that the percentages were big, the number of elements were not, so the number of people who
+hadnt cpox but took the vaccine is WAY too big than of those who had cpoxand took the vaccine, but the percentages
+are equal
+
+<hr>
+
+As i said i all of the previous projects, i dont recommend you to read this code bellow, because it is not explicative, it is just the pure code:
+
+```python
+
+def cpox_project(): 
+    import pandas as pd
+    import numpy as np 
+    df = pd.read_csv('NISPUF17.csv')
+    keepcolumns = ['SEX', 'P_NUMVRC', 'HAD_CPOX']
+    df = df[keepcolumns]
+    
+    df_yes = df[df['HAD_CPOX'] == 1].dropna()
+    df_no = df[df['HAD_CPOX'] == 2].dropna()
+    
+    df_yes_one = df_yes[df_yes['P_NUMVRC'] > 0.0].dropna()
+    df_yes_none = df_yes[df_yes['P_NUMVRC'] == 0.0].dropna()
+
+    df_no_one = df_no[df_no['P_NUMVRC'] > 0.0].dropna()
+    df_no_none = df_no[df_no['P_NUMVRC'] == 0.0].dropna()
+    
+    df_yes_one_m = df_yes_one[df_yes_one['SEX'] == 1].dropna() 
+    df_yes_one_f = df_yes_one[df_yes_one['SEX'] == 2].dropna() 
+
+    df_yes_none_m = df_yes_none[df_yes_none['SEX'] == 1].dropna() 
+    df_yes_none_f = df_yes_none[df_yes_none['SEX'] == 2].dropna() 
+
+    df_no_one_m = df_no_one[df_no_one['SEX'] == 1].dropna() 
+    df_no_one_f = df_no_one[df_no_one['SEX'] == 2].dropna() 
+
+    df_no_none_m = df_no_none[df_no_none['SEX'] == 1].dropna() 
+    df_no_none_f = df_no_none[df_no_none['SEX'] == 2].dropna() 
+    
+    t1 = len(df_yes_one_m)
+    t2 = len(df_yes_one_f)
+    t3 = len(df_yes_none_m)
+    t4 = len(df_yes_none_f)
+    t5 = len(df_no_one_m)
+    t6 = len(df_no_one_f)
+    t7 = len(df_no_none_m)
+    t8 = len(df_no_none_f)
+    t = (t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8)
+    
+    had_took={"male":0,
+        "female":0} 
+    had_didnttook={"male":0,
+        "female":0} 
+
+    hadnt_took={"male":0,
+        "female":0} 
+    hadnt_didnttook={"male":0,
+        "female":0} 
+
+    had_took['male']= t1/(t1 + t3)
+    had_took['female']= t2 / (t2 + t4) 
+
+    had_didnttook['male'] = t3/(t1 + t3)
+    had_didnttook['female'] = t4/(t2 + t4)
+    
+    hadnt_took['male'] = t5/(t5 + t7)
+    hadnt_took['female'] = t6/(t6 + t8)
+
+    hadnt_didnttook['male'] = t7/(t5 + t7)
+    hadnt_didnttook['female'] = t8/(t6 + t8)
+    
+    dfpie = pd.DataFrame({'elements': [t1, t2, t3, t4, t5, t6, t7, t8]},
+                  index=['yes_one_m', 'yes_one,f', 'yes_none_m',
+                         'yes_none_f', 'no_one_m', 'no_one_f',
+                         'no_none_m', 'no_none_f' ])
+
+    plot = dfpie.plot.pie(y='elements', figsize = (8,8))
+```
+
+</p>
+</details>
+
+<hr>
