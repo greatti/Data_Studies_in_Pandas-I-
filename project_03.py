@@ -25,3 +25,14 @@ This way we can calcullate the effectivity of the vaccine, lets start then:
     
 '''
 
+import pandas as pd
+import numpy as np 
+
+pd.options.display.max_columns = None
+pd.options.display.max_rows = None
+
+df = pd.read_csv('NISPUF17.csv')
+
+#### print(df['SEX'].unique()) #To see all the values, 1 for male 2 for female
+#### print(df['HAD_CPOX'].unique()) #2 for No, 1 for yes, 77 for dontknow and 99 for refused
+#### print(df['P_NUMVRC'].unique()) 
