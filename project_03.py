@@ -164,6 +164,13 @@ For me that is a little bit confusing, because:
 
 '''
 
+dfpie = pd.DataFrame({'elements': [t1, t2, t3, t4, t5, t6, t7, t8]},
+                  index=['yes_one_m', 'yes_one,f', 'yes_none_m',
+                         'yes_none_f', 'no_one_m', 'no_one_f',
+                         'no_none_m', 'no_none_f' ])
+
+plot = dfpie.plot.pie(y='elements', figsize = (8,8)) 
+
 
 
 
