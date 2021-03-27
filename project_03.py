@@ -127,6 +127,24 @@ hadnt_took={"male":0,
 hadnt_didnttook={"male":0,
         "female":0} #def the initial dictionary for those who hadnt cpox and didnt took at least one dose
 
+had_took['male']= t1/(t1 + t3)
+had_took['female']= t2 / (t2 + t4) 
+
+had_didnttook['male'] = t3/(t1 + t3)
+had_didnttook['female'] = t4/(t2 + t4)
+
+print(had_took) #means that 70% of mans that had cpox were vaccinated, and 69% of woman that had cpox were vaccinated
+print(had_didnttook) #means that 29% of mans that had cpox werent vaccinated , and 30% of womand that had cpox werent vaccinated
+
+hadnt_took['male'] = t5/(t5 + t7)
+hadnt_took['female'] = t6/(t6 + t8)
+
+hadnt_didnttook['male'] = t7/(t5 + t7)
+hadnt_didnttook['female'] = t8/(t6 + t8)
+
+print(hadnt_took)
+print(hadnt_didnttook)
+
 
 
 
