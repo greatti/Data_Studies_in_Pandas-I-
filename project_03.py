@@ -42,3 +42,46 @@ df = pd.read_csv('NISPUF17.csv')
 keepcolumns = ['SEX', 'P_NUMVRC', 'HAD_CPOX'] #To create a list with only this column
 df = df[keepcolumns]  #And pass this two columns to a new dataframe called dfflu
 #### print(df.head(100))
+
+''' Now we filter to just the ones who had and who had not '''
+
+df_yes = df[df['HAD_CPOX'] == 1].dropna()
+df_no = df[df['HAD_CPOX'] == 2].dropna()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
