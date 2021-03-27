@@ -115,6 +115,18 @@ OK now we have all we need, so we can create a dictionary to calculate:
     The percentage of woman that hadnt cpox and did not took at least one dose
 '''
 
+had_took={"male":0,
+        "female":0} # def the initial dictionary for those who had cpox and took at least one dose
+
+had_didnttook={"male":0,
+        "female":0} #def the initial dictionary for those who had cpox and didnt took at least one dose
+
+hadnt_took={"male":0,
+        "female":0} #def the initial dictionary for those who hadnt cpox and took at least one dose
+
+hadnt_didnttook={"male":0,
+        "female":0} #def the initial dictionary for those who hadnt cpox and didnt took at least one dose
+
 
 
 
