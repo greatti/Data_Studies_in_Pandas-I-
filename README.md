@@ -32,8 +32,8 @@ This is the first project of a study in Pandas library, the objective is one day
   - presidents.csv **One of the csv's used in python files**
 + NIS-PUF17-DUG.pdf **PDF explaining all the variables in the project**
 + NISPUF17.csv **database of the project**
-+ project_01.py **the first project 
-+ project_02.py
++ project_01.py **the first project**
++ project_02.py **the second project**
 
 <hr>
 
@@ -142,6 +142,78 @@ We basically want to do here 3 studies:
 So what can we conclude? Children that have been fed with breastmilk take more doses of flu, in average, when compared to those that have not been fed with breastmilk, but it is kinda similar, that indicates that maybe the number of elements in ['CBF_01'] could be similar too? So we will confirm this by the second study.
 The second study proves the opposite, we have MUCH more children fed with breastmilk than all the other options, so that make me think, maybe if we had 25% of children for each class, the average could be different? I think so. 
 To confirm that the number of elements influences in average, we do the third study and see that we really have much more children fed with breastmilk in all classes, for both 5 doses and 0 doses
+
+This codes i dont recommend reading before seeing the full project_02, because it is not explicative, is just the pure study code.
+
+```python
+def First_project(): 
+    import pandas as pd
+    import numpy as np 
+    df = pd.read_csv('NISPUF17.csv')
+    keepcolumns = ['CBF_01', 'P_NUMFLU']
+    dfflu = df[keepcolumns]
+    dfflu_yes = dfflu[dfflu['CBF_01'] == 1].dropna()
+    dfflu_no = dfflu[dfflu['CBF_01'] == 2].dropna()
+    y = len(dfflu_yes)
+    n = len(dfflu_no)
+    y_av = np.sum(dfflu_yes['P_NUMFLU'])/y
+    n_av = np.sum(dfflu_no['P_NUMFLU'])/n
+    return(y_av, n_av)
+
+def Second_project(): 
+    import pandas as pd 
+    #import numpy as np 
+    df = pd.read_csv('NISPUF17.csv')
+    keepcolumns = ['CBF_01', 'P_NUMFLU']
+    dfflu = df[keepcolumns]
+    
+    dfflu_yes = dfflu[dfflu['CBF_01'] == 1].dropna()
+    dfflu_no = dfflu[dfflu['CBF_01'] == 2].dropna()
+    dfflu_dontknow = dfflu[dfflu['CBF_01'] == 77].dropna()
+    dfflu_refuse = dfflu[dfflu['CBF_01'] == 99].dropna()
+    y = len(dfflu_yes)
+    n = len(dfflu_no)
+    dn = len(dfflu_dontknow)
+    r = len(dfflu_refuse)
+    t = (y + n + dn + r)
+    
+    yes = (y / t)*100
+    no = (n / t)*100
+    dontknow = (dn / t)*100
+    refused = (r / t)*100
+    
+    return(yes,no,dontknow,refused)
+
+def Third_project(): 
+    #import numpy as np
+    import pandas as pd
+    
+    df = pd.read_csv('NISPUF17.csv')
+    keepcolumns = ['CBF_01', 'P_NUMFLU']
+    dfflu = df[keepcolumns]
+
+    dmin = min(dfflu['P_NUMFLU'].dropna().unique())
+    #dmax = max(dfflu['P_NUMFLU'].dropna().unique())
+
+    #dfflu_doses_max = dfflu[dfflu['P_NUMFLU'] == dmax].dropna()
+    dfflu_doses_5 = dfflu[dfflu['P_NUMFLU'] == 5.0].dropna()
+    dfflu_doses_min = dfflu[dfflu['P_NUMFLU'] == dmin].dropna()
+    
+    t5 = len(dfflu_doses_5)
+    tmin = len(dfflu_doses_min)
+    #tmax = len(dfflu_doses_max)
+    
+    dfflu_doses_5_1 = dfflu_doses_5[dfflu_doses_5['CBF_01'] == 1]
+    dfflu_doses_min_1 = dfflu_doses_min[dfflu_doses_min['CBF_01'] == 1] 
+    
+    t51 = len(dfflu_doses_5_1)
+    tmin1 = len(dfflu_doses_min_1)
+
+    yes_5 = (t51 / t5)*100
+    yes_min = (tmin1 / tmin)*100
+    
+    return(yes_5, yes_min)
+```
 
 </p>
 </details>
