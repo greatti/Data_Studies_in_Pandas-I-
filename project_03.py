@@ -63,6 +63,30 @@ df_no_none = df_no[df_no['P_NUMVRC'] == 0.0].dropna()
 #### print(df_no_one.head())
 #### print(df_no_none.head())
 
+''' To end this, we will create 8 more dataframes, because each one of this last dataframes
+we have to separate in male and female '''
+
+df_yes_one_m = df_yes_one[df_yes_one['SEX'] == 1].dropna() #had cpox, at least one dose, male
+df_yes_one_f = df_yes_one[df_yes_one['SEX'] == 2].dropna() #had cpox, at least one dose, female
+
+df_yes_none_m = df_yes_none[df_yes_none['SEX'] == 1].dropna() #had cpox, no doses, male
+df_yes_none_f = df_yes_none[df_yes_none['SEX'] == 2].dropna() #had cpox, no doses, female
+
+df_no_one_m = df_no_one[df_no_one['SEX'] == 1].dropna() #hadnt cpox, at least one dose, male
+df_no_one_f = df_no_one[df_no_one['SEX'] == 2].dropna() #hadnt cpox, at least one dose, female
+
+df_no_none_m = df_no_none[df_no_none['SEX'] == 1].dropna() #hadnt cpox, no doses, male
+df_no_none_f = df_no_none[df_no_none['SEX'] == 2].dropna() #hadnt cpox, no doses, female
+
+#### print(df_yes_one_m.head(20))
+#### print(df_yes_one_f.head(20))
+#### print(df_yes_none_m.head())
+#### print(df_yes_none_f.head())
+#### print(df_no_one_m.head())
+#### print(df_no_one_f.head())
+#### print(df_no_none_m.head())
+#### print(df_no_none_f.head())
+
 
 
 
