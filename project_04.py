@@ -61,3 +61,16 @@ Now we'll use pval and corr functions from scipy.stats to calculate this values
 corr, pval = st.pearsonr(df['HAD_CPOX'], df['P_NUMVRC'])
 
 print(corr, pval)
+
+''' 
+
+What this two values means? 0.0704 in core means that there is probably a linear like relation 
+between this two variables. pvalue so small means that a relationship between this two variables
+by chance is unlikely
+
+So, conclusion: Now we know for sure that there is really a relashioship between this two columns
+and with this we finish our first module
+
+I hope you have learned a lot with this 
+
+'''
