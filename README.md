@@ -36,6 +36,7 @@ This is the first project of a study in Pandas library, the objective is one day
 + project_01.py **the first project**
 + project_02.py **the second project**
 + project_03.py **the third project**
++ project_04.py **the fourth project**
 
 <hr>
 
@@ -306,8 +307,6 @@ We see that even that the percentages were big, the number of elements were not,
 hadnt cpox but took the vaccine is WAY too big than of those who had cpoxand took the vaccine, but the percentages
 are equal
 
-<hr>
-
 As i said i all of the previous projects, i dont recommend you to read this code bellow, because it is not explicative, it is just the pure code:
 
 ```python
@@ -381,6 +380,40 @@ def cpox_project():
     
     return(had_took, had_didnttook, hadnt_took, hadnt_didnttook)
     return(plot)
+```
+
+</p>
+</details>
+
+<hr>
+
+### FOURTH PROJECT ( [project_04](https://github.com/greatti/Data_studies/blob/main/project_04.py) )
+
+<details><summary>DESCRIPTION</summary>
+ 
+<p>
+  
+This fourth project is simpler but it helps a lot to understand the conclusions of project_03, we'll see what is and how to calculate corr and pval with Scipy. First we want to see the effectivity of the vaccine when compared to the number of doses, right? So we'll filter our first dataframes into only two columns, remeber to drop the NaN.
+
+When we get a simple dataframe with only two columns, we use scipy.stats.pearsonr applied in this columns.
+But what exactly is corr and pval? It is explained in project_04 but i'll copy it here: 
+
+```python
+def pval_corr_cpox():
+    import pandas as pd
+    import numpy as np
+    import scipy.stats as st
+
+    pd.options.display.max_columns = None
+    pd.options.display.max_rows = None
+    df = pd.read_csv('NISPUF17.csv')
+    
+    keepcolumns = ['P_NUMVRC', 'HAD_CPOX'] #To create a list with only this column
+    df = df[keepcolumns]
+    df = df[df['HAD_CPOX'].lt(3)].dropna()
+    
+    corr, pval = st.pearsonr(df['HAD_CPOX'], df['P_NUMVRC'])
+    return(corr, pval)
 ```
 
 </p>
