@@ -51,3 +51,13 @@ We want to filter our dataframe droping na's and geting the number of values low
 df = df[df['HAD_CPOX'].lt(3)].dropna()
 
 #### print(df.head(10))
+
+'''
+
+Now we'll use pval and corr functions from scipy.stats to calculate this values
+
+'''
+
+corr, pval = st.pearsonr(df['HAD_CPOX'], df['P_NUMVRC'])
+
+print(corr, pval)
