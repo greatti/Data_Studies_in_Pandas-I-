@@ -26,3 +26,16 @@ pval is the probability of having a relation between two columns. A small pval m
 highly unlikely to occur by chance, In this case, pval should be very small (will end in e-18 indicating a very small
                                                                              number).
 '''
+
+import numpy as np 
+import pandas as pd
+import scipy.stats as st
+
+pd.options.display.max_columns = None
+pd.options.display.max_rows = None
+    
+df = pd.read_csv('NISPUF17.csv')
+#We already know the unique values of the two columns we want [1, 2] and [0.0, 1.0, 2.0, 3.0]
+    
+keepcolumns = ['P_NUMVRC', 'HAD_CPOX'] #To create a list with only this column
+df = df[keepcolumns]
