@@ -39,3 +39,15 @@ df = pd.read_csv('NISPUF17.csv')
     
 keepcolumns = ['P_NUMVRC', 'HAD_CPOX'] #To create a list with only this column
 df = df[keepcolumns]
+
+#### print(df.head(10))
+
+'''
+
+We want to filter our dataframe droping na's and geting the number of values lower than 3.0
+
+'''
+
+df = df[df['HAD_CPOX'].lt(3)].dropna()
+
+#### print(df.head(10))
