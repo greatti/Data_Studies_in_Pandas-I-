@@ -44,3 +44,13 @@ two rows and no missing values
 '''
 inner_df = pd.merge(staff_df, students_df, how = 'inner', left_index = True, right_index = True)
 print(inner_df)
+
+''' And we can even add the left frame elements to the right frame, or the opposite '''
+right_df = pd.merge(staff_df, students_df, how = 'right', left_index = True, right_index = True)
+left_df = pd.merge(staff_df, students_df, how = 'left', left_index = True, right_index = True)
+print(right_df)
+print(left_df)
+
+'''Notice that in the right join we have just 'students_df' elements, and in the left join we have just
+'staff_df' elements'''
+
