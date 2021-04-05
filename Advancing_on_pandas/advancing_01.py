@@ -103,11 +103,20 @@ These are data from US Department of Education College Scorecard that have data 
 over the years, each CSV file is a year
 '''
 
-df2011 = pd.read_csv('MERGED2011_12_PP.csv', error_bad_lines = False)
+df2011 = pd.read_csv('MERGED2011_12_PP.csv', error_bad_lines = False) #error_bad_lines = False means that "bad lines" will be dropped
 df2012 = pd.read_csv('MERGED2012_13_PP.csv', error_bad_lines = False)
 df2013 = pd.read_csv('MERGED2013_14_PP.csv', error_bad_lines = False)
-#até aqui definimos os 3 DF
+
 print(df2011.head())
 print(df2012.head())
 print(df2013.head())
+#If we want to see the length of the dataframes:
+print(len(df.2011))
+print(len(df.2012))
+print(len(df.2013))
+
+#We can now create a list with the three dataframes to concatenate them
+
+frames = [df2011, df2012, df2013]
+conc = pd.concat(frames)
 
