@@ -52,5 +52,44 @@ print(right_df)
 print(left_df)
 
 '''Notice that in the right join we have just 'students_df' elements, and in the left join we have just
-'staff_df' elements'''
+'staff_df' elements
 
+Do you remember that we had to set the indexes before merging? We dont need to do it if we use 'on' parameter
+
+'''
+join_on = pd.merge(staff_df, students_df, how = 'right', on = 'Name')
+print(join_on)
+
+''' What if we had conflict between frames?'''
+
+staffdf = pd.DataFrame([{'Name' : 'Greatti', 'Role' : 'Programmer', 'Location' : 'Maringá'},
+                         {'Name' : 'Fuzioka', 'Role' : 'Gastronomer', 'Location' : 'Maringá'},
+                         {'Name' : 'Utida', 'Role' : 'Designer', 'Location' : 'São Paulo'}])
+
+studentsdf = pd.DataFrame([{'Name' : 'Greatti', 'School' : 'UEM', 'Location' : 'Center' },
+                           {'Name' : 'Fuzioka', 'School' : 'Cesu', 'Location' : 'Guedner Avenue'},
+                           {'Name' : 'Currie', 'School' : 'PUC', 'Location' : 'Duque'}])
+
+print(staffdf)
+print(studentsdf)
+
+''' We want all the information about people on staff, that is, the info in staffdf and their
+info in studentsdf in case there is any student at staff '''
+info_staff = pd.merge(staffdf, studentsdf, how = 'left', on = 'Name')
+print(info_staff)
+''' See that because we had two different columns named 'Location', Pandas atributted _x and _y sufixes '''
+
+'''What if the first name of two people are equal but not the last name? '''
+
+staffdf = pd.DataFrame([{'Fname' : 'Brenno', 'Lname' : 'Greatti', 'Role' : 'Programmer'}, 
+                        {'Fname' : 'Larissa', 'Lname' : 'Reis', 'Role' : 'Gastronomer'}, 
+                        {'Fname' : 'Leo', 'Lname' : 'Utida', 'Role' : 'Designer'}])
+
+studentsdf = pd.DataFrame([{'Fname' : 'Brenno', 'Lname' : 'Bethe', 'School' : 'Math'}, 
+                           {'Fname' : 'Joui', 'Lname' : 'Jouki', 'School' : 'Publicity'}, 
+                           {'Fname' : 'Larissa', 'Lname' : 'Reis', 'School' : 'Gastronomy'}])
+
+#Brenno Bethe and Joui Jouki arent in staffdf, but Larissa Reis is
+
+Intersec = pd.merge(staffdf, studentsdf, how = 'inner', on = ['Fname', 'Lname'])
+print(Intersec) #And now we see that the only intersection is Larissa Reis, that are on both frames in index
