@@ -38,3 +38,9 @@ merge is a function that join two dataframes, as we can see, in this case, the f
 '''
 print(outer_df) #You need to observe that Lewis is in ['Role'] but not in ['School'], and the same happens to Utida
 
+'''
+If we wanted just the data that are in both frames, than we do a inner join, and we wxpect to stay with just
+two rows and no missing values
+'''
+inner_df = pd.merge(staff_df, students_df, how = 'inner', left_index = True, right_index = True)
+print(inner_df)
