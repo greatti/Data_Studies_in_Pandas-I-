@@ -93,3 +93,21 @@ studentsdf = pd.DataFrame([{'Fname' : 'Brenno', 'Lname' : 'Bethe', 'School' : 'M
 
 Intersec = pd.merge(staffdf, studentsdf, how = 'inner', on = ['Fname', 'Lname'])
 print(Intersec) #And now we see that the only intersection is Larissa Reis, that are on both frames in index
+
+'''
+Lets look to a lot of datasets: 
+                                - MERGED2011_12_PP.csv
+                                - MERGED2012_13_PP.csv
+                                - MERGED2013_14_PP.csv
+These are data from US Department of Education College Scorecard that have data from each US University
+over the years, each CSV file is a year
+'''
+
+df2011 = pd.read_csv('MERGED2011_12_PP.csv', error_bad_lines = False)
+df2012 = pd.read_csv('MERGED2012_13_PP.csv', error_bad_lines = False)
+df2013 = pd.read_csv('MERGED2013_14_PP.csv', error_bad_lines = False)
+#até aqui definimos os 3 DF
+print(df2011.head())
+print(df2012.head())
+print(df2013.head())
+
