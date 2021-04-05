@@ -111,12 +111,26 @@ print(df2011.head())
 print(df2012.head())
 print(df2013.head())
 #If we want to see the length of the dataframes:
-print(len(df.2011))
-print(len(df.2012))
-print(len(df.2013))
+print(len(df2011))
+print(len(df2012))
+print(len(df2013))
 
 #We can now create a list with the three dataframes to concatenate them
 
 frames = [df2011, df2012, df2013]
 conc = pd.concat(frames)
+#And now the total length is:
+print(len(df2011) + len(df2012) + len(df2013))
 
+'''
+Although, a problem in concat() is that we cannot know from which dataframe is each element.
+That means: we have no way of knowing from which year is which data.
+We can add another level of index that will inform the year
+'''
+
+f_conc = pd.concat(frames, keys = ['2011', '2012', '2013'])
+print(f_conc) # and that way we associate wach element of the list with the correspondent key
+
+'''
+full pandas.concat() documentation can be found in here: https://pandas.pydata.org/docs/reference/api/pandas.concat.html?highlight=concat#pandas.concat
+'''
