@@ -91,4 +91,20 @@ Now, we need to use 'Apply()' in df using min_max():
 dff = df.apply(min_max, axis = 'columns').head()
 print(dff)
 
+''' What if we wanted to incorporete this two columns to census.csv? '''
+
+def min_max(row):
+    data = row[['POPESTIMATE2010', 
+                'POPESTIMATE2011', 
+                'POPESTIMATE2012', 
+                'POPESTIMATE2013', 
+                'POPESTIMATE2014', 
+                'POPESTIMATE2015',]] 
+    row['max'] = np.max(data) #create a row called 'max' that is the maximum value of 'data'
+    row['min'] = np.min(data) #create a row called 'min' that is the minimum value of 'data'
+    
+    return row #return all the rows
+
+dfff = df.apply(min_max, axis = 'columns').head()
+print(dfff)
 
