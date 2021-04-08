@@ -5,7 +5,7 @@ import timeit
 df = pd.read_csv('C:/Users/great/Documents/GitHub/Data_studies/Advancing_on_pandas/census.csv') #You need to put your path here
 pd.options.display.max_columns = None #para nao ter limite de colunas
 pd.options.display.max_rows = None #para nao ter limite de linhas
-print(df.head())
+#### print(df.head())
 
 '''
 So, ultill now we did many processes one at a time, but we can use CHAINING to do all at once:
@@ -18,7 +18,7 @@ df = (df.where(df['SUMLEV'] == 50)
     .set_index(['STNAME'], ['CTYNAME'])
     .rename(columns = { 'ESTIMATESBASE2010' : 'Estimates Base 2010'}))
 
-print(df.head())
+#### print(df.head())
 
 '''
 We can question: how fast is realiza all this processes at once when comparad to doing one at a time?
@@ -34,7 +34,7 @@ def first_approach(): #Doing all at once in 'df'
             .rename(columns = { 'ESTIMATESBASE2010' : 'Estimates Base 2010'}))
     
 df = pd.read_csv('C:/Users/great/Documents/GitHub/Data_studies/Advancing_on_pandas/census.csv')
-print(timeit.timeit(first_approach, number = 10)) #Calculate the time to run this function 10 times 
+#### print(timeit.timeit(first_approach, number = 10)) #Calculate the time to run this function 10 times 
 
 def second_approach(): #Doing one action at a time in 'df'
     new_df = df[df['SUMLEV'] == 50]
@@ -42,7 +42,7 @@ def second_approach(): #Doing one action at a time in 'df'
     return new_df.rename(columns = {'ESTIMATESBASE2010' : 'Estimates Base 2010'})
 
 df = pd.read_csv('C:/Users/great/Documents/GitHub/Data_studies/Advancing_on_pandas/census.csv')
-print(timeit.timeit(second_approach, number = 10))
+#### print(timeit.timeit(second_approach, number = 10))
 
 #Apparently the second method is 4 times faster, even the first one being leaner
 
@@ -89,11 +89,11 @@ Now, we need to use 'Apply()' in df using min_max():
 '''
 
 dff = df.apply(min_max, axis = 'columns').head()
-print(dff)
+#### print(dff)
 
 ''' What if we wanted to incorporete this two columns to census.csv? '''
 
-def min_max(row):
+def min_max2(row):
     data = row[['POPESTIMATE2010', 
                 'POPESTIMATE2011', 
                 'POPESTIMATE2012', 
@@ -105,6 +105,27 @@ def min_max(row):
     
     return row #return all the rows
 
-dfff = df.apply(min_max, axis = 'columns').head()
-print(dfff)
+dfff = df.apply(min_max2, axis = 'columns').head()
+#### print(dfff)
+
+'''
+All this things we did can be done in a single line using lambda function
+'''
+rows = ['POPESTIMATE2010', 'POPESTIMATE2011', 'POPESTIMATE2012', 'POPESTIMATE2013', 'POPESTIMATE2014', 'POPESTIMATE2015']
+dfmax = df.apply(lambda x: np.max(x[rows]), axis = 'columns').head() #we are applying np.max on 'rows' list of columns
+dfmin = df.apply(lambda x: np.min(x[rows]), axis = 'columns').head()
+print(dfmax)
+print(dfmin)
+
+'''
+lambda: 
+        -This is like a unnamed function that gets a unique variable 'x' and return
+        a unique value, in this case, the maximum value of row
+
+apply is a cool way to go because we can use whatever function we defined previously and use whatever 
+function we want with lambda
+
+You see? In this case, we are applying on 'df' the 'lambda' function, in this two cases np.max() and np.min()
+on the columns we specified before
+'''
 
