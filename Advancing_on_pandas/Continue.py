@@ -26,3 +26,20 @@ We can question: how fast is realiza all this processes at once when comparad to
 For that we use 'timeit' library in two different functions
 '''
 
+def first_approach(): #Doing all at once in 'df'
+    global df 
+    return (df.where(df['SUMLEV'] == 50)
+            .dropna()
+            .set_index(['STNAME', 'CTYNAME'])
+            .rename(columns = { 'ESTIMATESBASE2010' : 'Estimates Base 2010'}))
+    
+df = pd.read_csv('census.csv')
+timeit.timeit(first_approach, number = 10) #Calculate the time to run this function 10 times 
+
+def second_approach(): #Doing one action at a time in 'df'
+    new_df = df[df['SUMLEV'] == 50]
+    new_df.set_index(['STNAME', 'CTYNAME'], inplace = True)
+    return new_df.rename(columns = {'ESTIMATESBASE2010' : 'Estimates Base 2010'})
+
+df = pd.read_csv('census.csv')
+timeit.timeit(second_approach, number = 10)
