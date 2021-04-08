@@ -38,6 +38,13 @@ This is the first project of a study in Pandas library, the objective is one day
     - project_02.py **the second project**
     - project_03.py **the third project**
     - project_04.py **the fourth project**
++ Advancing_on_pandas
+  - Pandas_merge&concat.py **Explains merge and concatenation contents**
+  - Functions_on_dataframes.py **Explains how to apply defined and lambda functions on dataframes**
+  - MERGED2011_12_PP.csv
+  - MERGED2012_13_PP.csv
+  - MERGED2013_14_PP.csv
+  - census.csv
 + README.md
 
 <hr>
