@@ -1,4 +1,9 @@
 '''
+            OBSERVATION: EVERY #### IS A PRINT STATEMENT, I RECOMMEND YOU TO FOLLOW THE 
+            CLASS AND GO REMOVING THE SHARPS TO SEE THE OUTPUT
+'''
+
+'''
 Lets say we want to get all the data from STNAME in df and separate it in regions
     - Northeast
     - Midweast
