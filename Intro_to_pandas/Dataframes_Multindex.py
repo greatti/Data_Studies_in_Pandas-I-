@@ -1,3 +1,8 @@
+'''
+            OBSERVATION: EVERY #### IS A PRINT STATEMENT, I RECOMMEND YOU TO FOLLOW THE 
+            CLASS AND GO REMOVING THE SHARPS TO SEE THE OUTPUT
+'''
+
 import pandas as pd
 pd.options.display.max_columns = None
 pd.options.display.max_rows = None
