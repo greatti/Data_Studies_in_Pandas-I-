@@ -39,6 +39,8 @@ df['REGION'] = df['STNAME'].apply(lambda x: get_state_region(x))
 #Define a REGION column that gets STNAME column on 'df' and apply get_state_region() function
 #### print(df[['CTYNAME', 'STNAME', 'REGION']].head(20))
 
+'''Notice that here we are applying a pre-defined function just to one column of the dataframe
+to create a new column based on the results of the function?'''
 
 # =========================Lets reset all the data============================= #
 
@@ -56,15 +58,18 @@ Lstate = df['STNAME'].unique()
 '''
 To the elements in Lstate array, we'll get the average of population in 2010 in each state on ['STNAME'] column
 '''
-for state in Lstate:
+for state in Lstate: 
     avg = np.average(df.where(df['STNAME'] == state).dropna()['CENSUS2010POP'])
-    #### print('counties in ' + state + ' have an average population of ' +str(avg))
+    #### print('counties in ' + state + ' had an average population of ' +str(avg) ' on 2010')
 
 for group, frame in df.groupby('STNAME'):
     avg = np.average(frame['CENSUS2010POP'])
-    #### print('counties in ' + group + ' have an average population of ' +str(avg))
+    #### print('counties in ' + group + ' had an average population of ' +str(avg) ' on 2010')
 
     ''' This will group df by state ('STNAME') and calculate the average in every state with using frames'''
+
+'''Notice that on the first method we had to define an array of elements to iterate in
+On the second method we hadnt, because we iterate over the indexes STNAME that we "groupedby" '''
 
 #Lets create a function where we can see how many data there is in each group we define
 
