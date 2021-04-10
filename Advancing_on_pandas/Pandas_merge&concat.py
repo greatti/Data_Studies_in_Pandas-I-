@@ -108,9 +108,9 @@ These are data from US Department of Education College Scorecard that have data 
 over the years, each CSV file is a year
 '''
 
-df2011 = pd.read_csv('MERGED2011_12_PP.csv', error_bad_lines = False) #error_bad_lines = False means that "bad lines" will be dropped
-df2012 = pd.read_csv('MERGED2012_13_PP.csv', error_bad_lines = False)
-df2013 = pd.read_csv('MERGED2013_14_PP.csv', error_bad_lines = False)
+df2011 = pd.read_csv('C:/Users/great/Documents/GitHub/Data_studies/Advancing_on_pandas/MERGED2011_12_PP.csv', error_bad_lines = False) #error_bad_lines = False means that "bad lines" will be dropped
+df2012 = pd.read_csv('C:/Users/great/Documents/GitHub/Data_studies/Advancing_on_pandas/MERGED2012_13_PP.csv', error_bad_lines = False)
+df2013 = pd.read_csv('C:/Users/great/Documents/GitHub/Data_studies/Advancing_on_pandas/MERGED2013_14_PP.csv', error_bad_lines = False)
 
 #### print(df2011.head())
 #### print(df2012.head())
@@ -134,7 +134,7 @@ We can add another level of index that will inform the year
 '''
 
 f_conc = pd.concat(frames, keys = ['2011', '2012', '2013'])
-#### print(f_conc) # and that way we associate wach element of the list with the correspondent key
+print(f_conc) # and that way we associate each element of the list with the correspondent key
 
 '''
 full pandas.concat() documentation can be found in here: https://pandas.pydata.org/docs/reference/api/pandas.concat.html?highlight=concat#pandas.concat
