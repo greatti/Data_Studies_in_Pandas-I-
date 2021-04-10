@@ -41,6 +41,7 @@ This is the first project of a study in Pandas library, the objective is one day
 + Advancing_on_pandas
   - Pandas_merge&concat.py **Explains merge and concatenation contents**
   - Functions_on_dataframes.py **Explains how to apply defined and lambda functions on dataframes**
+  - Functions_with_groupby.py **Explains how to create and apply functions to separate and modify data on a dataframe**
   - MERGED2011_12_PP.csv
   - MERGED2012_13_PP.csv
   - MERGED2013_14_PP.csv
