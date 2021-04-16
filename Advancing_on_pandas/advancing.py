@@ -48,10 +48,38 @@ df.groupby('cancellation_policy').agg({'review_scores_value' : np.nanmean})
 This is just an example, but we dont need necessarily to associate just one function, we can use a lot of them, and
 we can associate to a lot of columns too! '''
 
-df.groupby('cancellation_policy').agg({'review_scores_value' : (np.nanmean, np.nanstd),
-                                       'reviews_per_month' : np.nanmean})
+#### print(df.groupby('cancellation_policy').agg({'review_scores_value' : (np.nanmean, np.nanstd),
+                                       #### 'reviews_per_month' : np.nanmean}))
 
 '''
-In this case we are applying two functions to 'review_scores_value' and one to 'reviews_per_month' 
+In this case we are applying two functions to 'review_scores_value' and one to 'reviews_per_month', the print statement 
+should return the result of this three functions when grouped by cancellation_plociy
+
+The results show, for example, that super_strict_30 types have a much much lower number of reviews per month in average
+and that only happens because we could separate this results using groupby, to apply in a hole group, do you see how this 
+is different from index?
+
+by the way, we didnt even defined an index!
+
+Notice that Agg( ) method return for us a unique value each column
 '''
 
+#transform( ) is a function that return an object that have same size as the group
+cols = ['cancellation_policy', 'review_scores_value'] #we'll modify 'df' to stay with just these two columns
+transform_df = df[cols].groupby('cancellation_policy').transform(np.nanmean)
+#### print(transform_df.head(20))
+
+''' All the elements that have the same group will have the same value too, in that case, it is the average of each gorup.
+that means we created a new dataframe called transform_df where every value represent the average of its 'cancellation_po-
+licy' group
+
+What if we wanted to join this column to the original dataframe now? We can use merge( ) 
+'''
+
+transform_df.rename({'review_scores_value' : 'mean_review_score'}, axis = 'columns', inplace = True) 
+#This is known, we are just renaming a column of transform_df 
+
+df_merge = pd.merge(df, transform_df, how = 'outer', left_index = True, right_index = True)
+#### print(df_merge.head(20)) 
+
+# IT WORKS!!!
