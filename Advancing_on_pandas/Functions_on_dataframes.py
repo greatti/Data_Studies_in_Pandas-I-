@@ -132,12 +132,12 @@ dfmin = df.apply(lambda x: np.min(x[rows]), axis = 'columns').head()
 '''
 lambda: 
         -This is like a unnamed function that gets a unique variable 'x' and return
-        a unique value, in this case, the maximum value of each element on the list
+        a unique value, in this case, the maximum value of each element on the liste
 
 apply is a cool way to go because we can use whatever function we defined previously and use whatever 
 function we want with lambda
 
-You see? In this case, we are applying on 'df' the 'lambda' function, in this two cases np.max() and np.min()
+You see? In this case, we are applying on 'df' the 'lambda' function, in this case,  np.max() and np.min(), 
 on the columns we specified before
 '''
 
