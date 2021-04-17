@@ -84,13 +84,43 @@ What if we wanted to join this column to the original dataframe now? We can use 
 transform_df.rename({'review_scores_value' : 'mean_review_score'}, axis = 'columns', inplace = True) 
 #This is known, we are just renaming a column of transform_df 
 
-df_merge = pd.merge(df, transform_df, how = 'outer', left_index = True, right_index = True)
+df = pd.merge(df, transform_df, how = 'outer', left_index = True, right_index = True)
 #### print(df_merge.head(20)) 
 
 '''IT WORKS!!! Now that we created a column representing the average of each group, we can create another column with the 
 difference between its actual review score and the mean value'''
 
-df_merge['mean_diff'] = np.absolute(df_merge['review_scores_value'] - df_merge['mean_review_score'])
-print(df_merge.head(20))
+df['mean_diff'] = np.absolute(df['review_scores_value'] - df['mean_review_score'])
+print(df.head(20))
 
-#You'll see that where the review score was a missing value, the mean_diff column is a NaN too.
+'''You'll see that where the review score was a missing value, the mean_diff column is a NaN too.
+
+Lets see know how can we apply a function on a column that filter the data using filter( )
+'''
+
+df = df.groupby('cancellation_policy').filter(lambda x: np.nanmean(x['review_scores_value']) > 9.2)
+#### print(df.head())
+
+''' was this is doing? we are grouping all the data by 'cancellation_policy' but staying just with those
+where review_scores_value > 9.2 but the NaN numbers are not dropped
+
+You could say, well, but we could use .where( ).dropna( ), so whats the difference? the difference is that
+using .filter( ) we can define whatever function we want with lambda
+
+Other way of doing this is apply( ) to create the average and to do the subtraction 
+'''
+
+def calc_mean_review_scores(group):
+    avg = np.nanmean(group['review_scores_value']) 
+    group['review_scores_mean'] = np.abs(avg - group['review_scores_value'])
+    return group 
+
+print(df.groupby('cancellation_policy').apply(calc_mean_review_scores).head())
+
+'''
+So we learned at least that, if we want to modify a column or create others, we have a lot of options: 
+- apply( ) 
+- transform( )
+- filter( ) 
+- where( ) 
+'''
