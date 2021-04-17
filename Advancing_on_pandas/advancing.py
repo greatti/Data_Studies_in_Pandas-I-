@@ -1,3 +1,8 @@
+'''
+            OBSERVATION: EVERY #### IS A PRINT STATEMENT, I RECOMMEND YOU TO FOLLOW THE 
+            CLASS AND GO REMOVING THE SHARPS TO SEE THE OUTPUT
+'''
+
 import pandas as pd
 import numpy as np
 df = pd.read_csv('C:/Users/great/Documents/GitHub/Data_studies/Advancing_on_pandas/housing.csv')
@@ -82,4 +87,10 @@ transform_df.rename({'review_scores_value' : 'mean_review_score'}, axis = 'colum
 df_merge = pd.merge(df, transform_df, how = 'outer', left_index = True, right_index = True)
 #### print(df_merge.head(20)) 
 
-# IT WORKS!!!
+'''IT WORKS!!! Now that we created a column representing the average of each group, we can create another column with the 
+difference between its actual review score and the mean value'''
+
+df_merge['mean_diff'] = np.absolute(df_merge['review_scores_value'] - df_merge['mean_review_score'])
+print(df_merge.head(20))
+
+#You'll see that where the review score was a missing value, the mean_diff column is a NaN too.
