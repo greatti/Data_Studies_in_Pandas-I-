@@ -25,3 +25,30 @@ grades = df['Grades'].astype(my_categories) #creating a grades dataframe applyin
 #Categorial = [] defines the ordem
 
 print(grades[grades > 'C']) #we can now filter 'grades' because this column is categorical and ordered
+
+'''
+we'll now create a column that say if the element is in ou out of a group determined by a condition, and 
+the column will use boolean variables to express this information
+
+to do this we will use get_dummies method 
+'''
+
+import pandas as pd
+import numpy as np 
+
+df = pd.read_csv('C:/Users/great/Documents/GitHub/Data_studies/Advancing_on_pandas/census.csv')
+df = df[df['SUMLEV'] == 50]
+#### print(df.head(15))
+
+df = df.set_index('STNAME').groupby(level = 0)['CENSUS2010POP'].agg(np.average) 
+#### print(df)
+
+'''
+our dataframe is now super reduced, because we defined the STATE NAME as index and calculated the average over the 
+2010 POPULATION in each state
+
+We can use cut(df, x) method to separate the data into groups of x elements
+'''
+
+dfcut = pd.cut(df, 10)
+print(dfcut)
