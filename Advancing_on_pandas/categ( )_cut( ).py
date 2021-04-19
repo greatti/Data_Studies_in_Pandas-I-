@@ -114,6 +114,40 @@ pivot.table( ) isnt limited to one function, you can assign one or more:
 dfpivt = df.pivot_table(values = 'score', index = 'country', columns = 'Tier', aggfunc = [np.mean, np.max]).head()
 #### print(dfpivt)
 
-dfpivtma = df.pivot_table(values = 'score', index = 'country', columns = 'Tier', aggfunc = [np.mean, np.max], margins = True)
+new_df = df.pivot_table(values = 'score', index = 'country', columns = 'Tier', aggfunc = [np.mean, np.max], margins = True)
 #margins = True show the superior limit 
-print(dfpivtma)
+#### print(new_df)
+
+#### print(new_df.index) 
+#### print(new_df.columns)
+
+#You see there is two leves of columns? ['mean', 'amax'] and ['FirstTier', 'SecondTier', 'ThirdTier', 'FourthTier']
+ 
+new_df_mf = new_df['mean']['FirstTier'] #this way we are getting just ONE column: the mean AND FirstTear column
+#### print(new_df_mf.head(15))
+
+'''
+Now that we have just one column that shows the mean value of FirstTier in each country, how can we get the best mean value
+of all the countries? Using idxmax( ) 
+
+Return index of first occurrence of maximum over requested axis. NA/null values are excluded.
+'''
+
+BEST_country = new_df_mf.idxmax()
+#### print(BEST_country) 
+
+dfs = df.pivot_table(values = 'score', index = 'country', columns = 'Tier', aggfunc = [np.mean, np.max], margins = True)
+#### print(dfs.head()) #lets redefine
+
+''' 
+Lets use now stack( ) method 
+'''
+
+dfs = dfs.stack()
+print(dfs.head(20))
+
+''' 
+You see that, this way, we dont have NaN? Because stack( ) puts 'country' as indexes, calculate the mean and max values
+over 'score' values in each 'Tier' column, but it print just those that arent NaN
+'''
+
