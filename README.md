@@ -43,6 +43,7 @@ This is the first project of a study in Pandas library, the objective is one day
   - Functions_on_dataframes.py **Explains how to apply defined and lambda functions on dataframes**
   - Functions_with_groupby.py **Explains how to create and apply functions to separate and modify data on a dataframe**
   - Agg( )_and_transformation( ).py **Explains how to use agg() and transform() methods**
+  - Pivot&Time.py **Explains how to create and work with categorical, pivot tables, stack and time in pandas** 
   - MERGED2011_12_PP.csv
   - MERGED2012_13_PP.csv
   - MERGED2013_14_PP.csv
