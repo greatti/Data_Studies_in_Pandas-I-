@@ -214,3 +214,31 @@ specific format '''
 
 ts3.index = pd.to_datetime(ts3.index)
 #### print(ts3) #now its fixed!
+
+'''
+when using to_datetime we can pass dayfirst = True argument to get the european model 
+'''
+
+#### print(pd.to_datetime('4.7.12', dayfirst = True))
+
+##############################     TIMEDELTAS      #####################################
+
+''' timedelta is a difference between datatimes '''
+
+delta = pd.Timestamp('1/17/2019') - pd.Timestamp('9/1/2016') 
+#### print(type(delta)) #timedelta object
+#### print(delta)
+
+''' Using timestamp we can see the date when summing days and hours '''
+
+date = pd.Timestamp('9/2/2016 8:10AM')
+new_date = date + pd.Timedelta('12D 3H') #after 12 days and 3 hours
+#### print(new_date)
+
+##########################      OFFSET     ################################
+
+''' is a function that have some specific rules very usefull '''
+
+print(pd.Timestamp('9/4/2016') + pd.offsets.Week()) #will add 7 days
+print(pd.Timestamp('9/4/2016') + pd.offsets.MonthEnd()) #will add the number of days necessary to go to the end of the month
+
