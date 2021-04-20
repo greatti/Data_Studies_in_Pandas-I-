@@ -144,10 +144,51 @@ Lets use now stack( ) method
 '''
 
 dfs = dfs.stack()
-print(dfs.head(20))
+#### print(dfs.head(20))
 
 ''' 
 You see that, this way, we dont have NaN? Because stack( ) puts 'country' as indexes, calculate the mean and max values
 over 'score' values in each 'Tier' column, but it print just those that arent NaN
 '''
+
+######## TIMESTAMP ########
+
+''' 
+timestamp is a pandas function associated to time in pandas library, but it isnt the only one, we have basically four: 
+- timestamp
+- datatimeindex
+- period
+- periodindex
+
+the first one associates values with points in space
+'''
+
+print(pd.Timestamp('9/1/2019 10:05AM')) # d/m/y h/m/AMorPM
+print(pd.Timestamp(2019, 12, 20, 0, 0)) # y/m/d h/m/s
+
+'''
+pandas have a function called isaweekday( ) that shows the day of the week 
+1: segunda
+7: domingo
+'''
+
+print(pd.Timestamp(2019, 12, 20, 0, 0).isoweekday())
+
+'''
+Or we can get one information at a time calling .second or .minute etc
+'''
+
+print(pd.Timestamp(2019, 12, 20, 5, 2, 23).second)
+
+'''
+Now, what if we wanted to get a period of time? Then we could use Period( )
+'''
+
+print(pd.Period('1/2016')) # Mounth / Year
+print(pd.Period('3/5/2016')) # Mounth / Day / Year
+
+print(pd.Period('1/2016') + 1) #will return fev
+print(pd.Period('3/5/2016') + 1) #will return day 6
+
+########## DATETIMEINDEX and PERIODINDEX ###########
 
