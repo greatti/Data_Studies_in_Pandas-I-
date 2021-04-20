@@ -163,8 +163,8 @@ timestamp is a pandas function associated to time in pandas library, but it isnt
 the first one associates values with points in space
 '''
 
-print(pd.Timestamp('9/1/2019 10:05AM')) # d/m/y h/m/AMorPM
-print(pd.Timestamp(2019, 12, 20, 0, 0)) # y/m/d h/m/s
+#### print(pd.Timestamp('9/1/2019 10:05AM')) # d/m/y h/m/AMorPM
+#### print(pd.Timestamp(2019, 12, 20, 0, 0)) # y/m/d h/m/s
 
 '''
 pandas have a function called isaweekday( ) that shows the day of the week 
@@ -172,23 +172,45 @@ pandas have a function called isaweekday( ) that shows the day of the week
 7: domingo
 '''
 
-print(pd.Timestamp(2019, 12, 20, 0, 0).isoweekday())
+#### print(pd.Timestamp(2019, 12, 20, 0, 0).isoweekday())
 
 '''
 Or we can get one information at a time calling .second or .minute etc
 '''
 
-print(pd.Timestamp(2019, 12, 20, 5, 2, 23).second)
+#### print(pd.Timestamp(2019, 12, 20, 5, 2, 23).second)
 
 '''
 Now, what if we wanted to get a period of time? Then we could use Period( )
 '''
 
-print(pd.Period('1/2016')) # Mounth / Year
-print(pd.Period('3/5/2016')) # Mounth / Day / Year
+#### print(pd.Period('1/2016')) # Mounth / Year
+#### print(pd.Period('3/5/2016')) # Mounth / Day / Year
 
-print(pd.Period('1/2016') + 1) #will return fev
-print(pd.Period('3/5/2016') + 1) #will return day 6
+#### print(pd.Period('1/2016') + 1) #will return fev
+#### print(pd.Period('3/5/2016') + 1) #will return day 6
 
 ########## DATETIMEINDEX and PERIODINDEX ###########
 
+'''
+lets use timestamp( ) of days one, two and three of september of 2016 to create a Serie and define them as index
+'''
+
+t1 = pd.Series(list('abc'), [pd.Timestamp('2016-09-01'), pd.Timestamp('2016-09-02'), pd.Timestamp('2016-09-03')])
+#### #print(t1)
+#### print(type(t1.index)) # DatetimeIndex type
+
+t2 = pd.Series(list('def'), [pd.Period('2016-09'), pd.Period('2016-10'), pd.Period('2016-11')])
+#### print(t2)
+
+
+d1 = ['2 June 2013', 'Aug 29, 2014', '2015-06-26', '7/12/16'] #we'll set a list of different forms to write dates
+ts3 = pd.DataFrame(np.random.randint(10,100,(4,2)), index = d1, columns = list('ab'))
+
+#### print(ts3)
+
+''' using pandas.to_datetime it'll try to convert all those types of dates to DateTime and put them in a 
+specific format '''
+
+ts3.index = pd.to_datetime(ts3.index)
+#### print(ts3) #now its fixed!
