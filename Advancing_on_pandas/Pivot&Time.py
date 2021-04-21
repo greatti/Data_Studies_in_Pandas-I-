@@ -239,6 +239,46 @@ new_date = date + pd.Timedelta('12D 3H') #after 12 days and 3 hours
 
 ''' is a function that have some specific rules very usefull '''
 
-print(pd.Timestamp('9/4/2016') + pd.offsets.Week()) #will add 7 days
-print(pd.Timestamp('9/4/2016') + pd.offsets.MonthEnd()) #will add the number of days necessary to go to the end of the month
+#### print(pd.Timestamp('9/4/2016') + pd.offsets.Week()) #will add 7 days
+#### print(pd.Timestamp('9/4/2016') + pd.offsets.MonthEnd()) #will add the number of days necessary to go to the end of the month
+
+''' how can we work with dates properly? 
+
+Lets suppose we have to look for 9 datas collected twice a week, every sunday, starting from october 2016
+Using date_range( ) we specify a START, a ENDDATE, a period and a frequency
+'''
+
+dates = pd.date_range('10-01-2016', periods = 9, freq = '2W-SUN') # W2-SUN is twice a week every sunday
+#### print(dates)
+
+# https://pandas.pydata.org/docs/user_guide/timeseries.html#timeseries-offset-aliases to see frequency aliases
+
+''' lets generate a random dataframe that for now means nothing '''
+df = pd.DataFrame({'Count 1' : 100 + np.random.randint(-5, 10, 9).cumsum(),
+                   'Count 2' : 120 + np.random.randint(-5, 10, 9).cumsum()}, 
+    index = dates)
+print(len(df))
+#### print(df)
+
+''' to verify the week day we know we have to use weekday_name( ) '''
+
+wd = df.index.day_name()
+#### print(wd) #we see its all correct, because we wanted the days to be sundays, right?
+
+''' lets use now pandas.dataframe.diff( ) to see the difference between datas '''
+
+dif = df.diff()
+#### print(dif)
+
+''' What if we wanted to count how many different years or months there is in our dataframe? 
+Then we should use resample( ) 
+
+to use resample( ) the object must have datetime-like index
+'''
+
+months = df.resample('M').mean() #we are calculating the mean value of all the elements that have the same month
+years = df.resample('Y').mean() #we are calculating the means value of all the elements that have the same year
+
+#### print(months, '\n') #should return a dataframe with 4 elements
+#### print(years, '\n') #should return a dataframe with 2 element
 
